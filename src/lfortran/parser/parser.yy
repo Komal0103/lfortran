@@ -107,6 +107,7 @@ void yyerror(YYLTYPE *yyloc, LCompilers::LFortran::Parser &p,
 %token TK_RBRACKET_OLD "/)"
 %token TK_PERCENT "%"
 %token TK_VBAR "|"
+%token TK_HASH "<<"
 
 %token <string> TK_STRING
 %token <string> TK_COMMENT
@@ -577,6 +578,7 @@ void yyerror(YYLTYPE *yyloc, LCompilers::LFortran::Parser &p,
 %left "//"
 %left "-" "+"
 %left "*" "/"
+%left "<<"
 %precedence UMINUS
 %right "**"
 
@@ -2388,6 +2390,7 @@ expr
     | expr "-" expr { $$ = SUB($1, $3, @$); }
     | expr "*" expr { $$ = MUL($1, $3, @$); }
     | expr "/" expr { $$ = DIV($1, $3, @$); }
+    | expr "<<" expr { $$ = HASH($1, $3, @$); }
     | "-" expr %prec UMINUS { $$ = UNARY_MINUS($2, @$); }
     | "+" expr %prec UMINUS { $$ = UNARY_PLUS ($2, @$); }
     | expr "**" expr { $$ = POW($1, $3, @$); }

@@ -22,6 +22,7 @@ namespace {
             case (operatorType::Mul) : return "*";
             case (operatorType::Div) : return "/";
             case (operatorType::Pow) : return "**";
+            case (operatorType::Hash) : return "<<";
         }
         throw std::runtime_error("Unknown type");
     }

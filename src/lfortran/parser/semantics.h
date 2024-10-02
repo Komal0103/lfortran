@@ -719,6 +719,7 @@ static inline reduce_opType convert_id_to_reduce_type(
 #define MUL(x, y, l) make_BinOp_t(p.m_a, l, EXPR(x), operatorType::Mul, EXPR(y))
 #define DIV(x, y, l) make_BinOp_t(p.m_a, l, EXPR(x), operatorType::Div, EXPR(y))
 #define POW(x, y, l) make_BinOp_t(p.m_a, l, EXPR(x), operatorType::Pow, EXPR(y))
+#define HASH(x,y,l) make_BinOp_t(p.m_a, l, EXPR(x), operatorType::Hash, EXPR(y))
 #define UNARY_MINUS(x, l) make_UnaryOp_t(p.m_a, l, unaryopType::USub, EXPR(x))
 #define UNARY_PLUS(x, l) make_UnaryOp_t(p.m_a, l, unaryopType::UAdd, EXPR(x))
 #define TRUE(l) make_Logical_t(p.m_a, l, true)

@@ -244,7 +244,7 @@ trivia_node
 
 boolop = And | Or | Xor | Eqv | NEqv
 
-operator = Add | Sub | Mul | Div | Pow
+operator = Add | Sub | Mul | Div | Pow | Hash
 
 stroperator = Concat
 

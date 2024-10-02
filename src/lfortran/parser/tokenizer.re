@@ -240,6 +240,7 @@ int Tokenizer::lex(Allocator &al, YYSTYPE &yylval, Location &loc, diag::Diagnost
             defop = "."[a-zA-Z]+".";
             kind = digit+ | name;
             significand = (digit+"."digit*) | ("."digit+);
+            special_char = "<<";
             exp = [edED][-+]? digit+;
             integer = digit+ ("_" kind)?;
             real = ((significand exp?) | (digit+ exp)) ("_" kind)?;
@@ -558,6 +559,7 @@ int Tokenizer::lex(Allocator &al, YYSTYPE &yylval, Location &loc, diag::Diagnost
             "," { RET(TK_COMMA) }
             "*" { RET(TK_STAR) }
             "|" { RET(TK_VBAR) }
+            "<<" { RET(TK_HASH) }
 
             // Multiple character symbols
             ".." { RET(TK_DBL_DOT) }
@@ -723,6 +725,7 @@ int Tokenizer::lex(Allocator &al, YYSTYPE &yylval, Location &loc, diag::Diagnost
 
             string1 { token_str(al, yylval.string, '"'); RET(TK_STRING) }
             string2 { token_str(al, yylval.string, '\''); RET(TK_STRING) }
+            special_char { RET(TK_STRING) }
 
             defop { token(yylval.string); RET(TK_DEF_OP) }
             name { token(yylval.string); RET(TK_NAME) }

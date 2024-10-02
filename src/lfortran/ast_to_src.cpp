@@ -24,6 +24,7 @@ namespace {
             case (operatorType::Mul) : return "*";
             case (operatorType::Div) : return "/";
             case (operatorType::Pow) : return "**";
+            case (operatorType::Hash) : return "<<";
         }
         throw LCompilersException("Unknown type");
     }
@@ -3450,6 +3451,10 @@ public:
             }
             case (operatorType::Pow) : {
                 last_expr_precedence = 11;
+                break;
+            }
+            case (operatorType::Hash) : {
+                last_expr_precedence = 5;
                 break;
             }
         }
